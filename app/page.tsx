@@ -23,7 +23,7 @@ export default function Home() {
           poster="/h9YsvpFvuAEvb1OXNOhZi.jpeg"
         >
           <source
-            src="/6502319-uhd_4096_2160_25fps.mp4"
+            src="/hero-brushing.mp4"
             type="video/mp4"
           />
         </video>
