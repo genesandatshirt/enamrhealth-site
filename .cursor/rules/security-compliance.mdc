@@ -1,0 +1,37 @@
+---
+description: Security, compliance, and best practices
+alwaysApply: true
+---
+
+# Security & Compliance Baselines
+
+## Data handling
+- Do not log or store plaintext PII in client-side code.
+- Store emails only via approved providers (e.g., Mailchimp/ConvertKit) or secure server-side storage.
+- Use HTTPS-only endpoints and avoid exposing secrets in client bundles.
+
+## Secrets
+- Store API keys in environment variables (`.env*`), never commit them.
+- Keep `.env*` in `.gitignore`; use Vercel Environment Variables for production.
+
+## Client-side best practices
+- Validate input on the client and server.
+- Use safe defaults for forms: `type="email"` and basic format checks.
+- Provide clear error/success feedback and avoid ambiguous states.
+
+## Dependencies
+- Prefer well‑maintained libraries.
+- Avoid adding packages without a clear need.
+- Keep dependencies minimal for the marketing site.
+
+## Analytics & Cookies
+- Require explicit consent before setting non‑essential cookies.
+- Ensure cookie banners can be dismissed and remembered.
+
+## Accessibility
+- Ensure color contrast meets WCAG 2.1 AA.
+- Provide meaningful button labels and focus states.
+
+## Deployments
+- Only deploy from `main`.
+- Validate after deployment: hero renders, form submits, cookie banner works.

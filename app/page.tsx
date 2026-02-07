@@ -117,6 +117,8 @@ export default function Home() {
                 className="w-full flex-1 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
                 placeholder="Email address"
                 type="email"
+                name="email"
+                aria-label="Email address"
                 value={email}
                 onChange={(event) => {
                   setEmail(event.target.value);
