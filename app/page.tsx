@@ -28,13 +28,19 @@ export default function Home() {
       </header>
 
       <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?auto=format&fit=crop&w=2000&q=80')",
-          }}
-        />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/h9YsvpFvuAEvb1OXNOhZi.jpeg"
+        >
+          <source
+            src="/6502319-uhd_4096_2160_25fps.mp4"
+            type="video/mp4"
+          />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/55 to-slate-900/20" />
         <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-24 text-white sm:py-28">
           <div className="max-w-2xl space-y-6">
@@ -79,16 +85,19 @@ export default function Home() {
         {[
           {
             title: "Test",
+            image: "/test_box.png",
             description:
               "Leverage clinical diagnostics in oral health through saliva biomarkers.",
           },
           {
             title: "Track",
+            image: "/xEtsDg19VXiUl82t3m2qO.png",
             description:
               "AI imaging, health questionnaires, and tele-dentistry for your oral health journey.",
           },
           {
             title: "Treat",
+            image: "/Zi1e-m-93S6uuft27ro6H.png",
             description:
               "Choose from personalized care plans fit to your body and lifestyle.",
           },
@@ -97,6 +106,11 @@ export default function Home() {
             key={item.title}
             className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
           >
+            <img
+              alt=""
+              className="h-40 w-full rounded-2xl object-cover"
+              src={item.image}
+            />
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
               {item.title}
             </p>
@@ -141,7 +155,11 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="h-80 w-64 rounded-2xl bg-gradient-to-br from-slate-200 via-slate-100 to-white" />
+            <img
+              alt="Enamr test kit preview"
+              className="h-80 w-64 rounded-2xl object-cover"
+              src="/Picture1.png"
+            />
             <p className="mt-4 text-sm text-slate-500">
               Interactive report preview coming soon.
             </p>
@@ -160,15 +178,31 @@ export default function Home() {
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
-            { name: "Enamr Health Biomarker Test", price: "$250 / 6 months" },
-            { name: "Suri Toothbrush", price: "$95" },
-            { name: "Revitin Toothpaste", price: "$7.00" },
+            {
+              name: "Enamr Health Biomarker Test",
+              price: "$250 / 6 months",
+              image: "/test_box.png",
+            },
+            {
+              name: "Suri Toothbrush",
+              price: "$95",
+              image: "/h9YsvpFvuAEvb1OXNOhZi.jpeg",
+            },
+            {
+              name: "Revitin Toothpaste",
+              price: "$7.00",
+              image: "/X6T95P7FuWDPXFuODr9ZK.png",
+            },
           ].map((product) => (
             <div
               key={product.name}
               className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
             >
-              <div className="h-40 rounded-xl bg-slate-100" />
+              <img
+                alt={product.name}
+                className="h-40 w-full rounded-xl object-cover"
+                src={product.image}
+              />
               <h3 className="mt-5 text-lg font-semibold text-slate-900">
                 {product.name}
               </h3>
