@@ -8,9 +8,9 @@ type ModalType = "privacy" | "terms" | null;
 
 export default function Home() {
   const [email, setEmail] = useState("");
-  const [emailStatus, setEmailStatus] = useState<"idle" | "error" | "success">(
-    "idle"
-  );
+  const [emailStatus, setEmailStatus] = useState<
+    "idle" | "loading" | "error" | "success"
+  >("idle");
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const [modal, setModal] = useState<ModalType>(null);
 
@@ -25,27 +25,40 @@ export default function Home() {
 
   const emailHelperText = useMemo(() => {
     if (emailStatus === "error") {
-      return "Please enter a valid email address.";
+      return "Please enter a valid email address or try again later.";
     }
     if (emailStatus === "success") {
-      return "Thanks for joining. We will be in touch soon.";
+      return "Thanks for joining. Please check your email to confirm.";
+    }
+    if (emailStatus === "loading") {
+      return "Submitting your email...";
     }
     return "Apply now for early access and lock in a free 1-1 results call.";
   }, [emailStatus]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!EMAIL_PATTERN.test(email.trim())) {
       setEmailStatus("error");
       return;
     }
-    setEmailStatus("success");
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("enamr_waitlist_email", email.trim());
-      window.localStorage.setItem(
-        "enamr_waitlist_timestamp",
-        new Date().toISOString()
-      );
+    setEmailStatus("loading");
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      if (!response.ok) {
+        setEmailStatus("error");
+        return;
+      }
+
+      setEmailStatus("success");
+      setEmail("");
+    } catch (error) {
+      setEmailStatus("error");
     }
   };
 
@@ -106,6 +119,7 @@ export default function Home() {
               className={`mt-2 text-sm ${
                 emailStatus === "error" ? "text-red-200" : "text-white/70"
               }`}
+              aria-live="polite"
             >
               {emailHelperText}
             </p>
@@ -130,8 +144,9 @@ export default function Home() {
               <button
                 className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
                 type="submit"
+                disabled={emailStatus === "loading"}
               >
-                Join Now
+                {emailStatus === "loading" ? "Joining..." : "Join Now"}
               </button>
             </form>
           </div>

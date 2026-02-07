@@ -22,4 +22,8 @@ Track technical changes, deployments, and notable decisions.
 
 - **Change:** Added waitlist form validation and cookie consent persistence.
 - **Owner:** Enamr Health / Engineering
-- **Notes:** LocalStorage keys: `enamr_waitlist_email`, `enamr_waitlist_timestamp`, `enamr_cookie_consent`.
+- **Notes:** Cookie consent uses `enamr_cookie_consent`.
+
+- **Change:** Added Mailchimp waitlist API integration.
+- **Owner:** Enamr Health / Engineering
+- **Notes:** Server-side route `app/api/waitlist/route.ts`. Requires `MAILCHIMP_API_KEY`, `MAILCHIMP_AUDIENCE_ID`, `MAILCHIMP_SERVER_PREFIX`.
