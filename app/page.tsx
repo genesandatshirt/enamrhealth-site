@@ -106,6 +106,7 @@ export default function Home() {
       </header>
 
       <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(120,182,220,0.55),rgba(18,46,76,0.25)_45%,rgba(8,18,35,0.6)_80%),linear-gradient(135deg,rgba(96,165,205,0.55),rgba(30,58,86,0.3)_55%,rgba(7,10,20,0.8))]" />
         <video
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
