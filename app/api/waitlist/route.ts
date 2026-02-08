@@ -40,6 +40,10 @@ export async function POST(request: Request) {
         email_address: email,
         status_if_new: "subscribed",
         status: "subscribed",
+        merge_fields: {
+          FNAME: "Friend",
+          LNAME: "Waitlist",
+        },
       }),
     }
   );
