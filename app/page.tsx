@@ -14,6 +14,7 @@ export default function Home() {
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const [modal, setModal] = useState<ModalType>(null);
+  const [showWaitlistBox, setShowWaitlistBox] = useState(true);
 
   useEffect(() => {
     const savedConsent =
@@ -23,6 +24,16 @@ export default function Home() {
       setCookieAccepted(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (emailStatus !== "success") {
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      setShowWaitlistBox(false);
+    }, 2500);
+    return () => window.clearTimeout(timer);
+  }, [emailStatus]);
 
   const emailHelperText = useMemo(() => {
     if (emailStatus === "error") {
@@ -119,49 +130,51 @@ export default function Home() {
               us.
             </p>
           </div>
-          <div
-            className="max-w-xl rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur"
-            id="waitlist"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
-              Join the wait list today
-            </p>
-            <p
-              className={`mt-2 text-sm ${
-                emailStatus === "error" ? "text-red-200" : "text-white/70"
-              }`}
-              aria-live="polite"
+          {showWaitlistBox && (
+            <div
+              className="max-w-xl rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur"
+              id="waitlist"
             >
-              {emailHelperText}
-            </p>
-            <form
-              className="mt-4 flex flex-col gap-3 sm:flex-row"
-              onSubmit={handleSubmit}
-            >
-              <input
-                className="w-full flex-1 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
-                placeholder="Email address"
-                type="email"
-                name="email"
-                aria-label="Email address"
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                  if (emailStatus !== "idle") {
-                    setEmailStatus("idle");
-                    setEmailErrorMessage("");
-                  }
-                }}
-              />
-              <button
-                className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
-                type="submit"
-                disabled={emailStatus === "loading"}
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
+                Join the wait list today
+              </p>
+              <p
+                className={`mt-2 text-sm ${
+                  emailStatus === "error" ? "text-red-200" : "text-white/70"
+                }`}
+                aria-live="polite"
               >
-                {emailStatus === "loading" ? "Joining..." : "Join Now"}
-              </button>
-            </form>
-          </div>
+                {emailHelperText}
+              </p>
+              <form
+                className="mt-4 flex flex-col gap-3 sm:flex-row"
+                onSubmit={handleSubmit}
+              >
+                <input
+                  className="w-full flex-1 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                  placeholder="Email address"
+                  type="email"
+                  name="email"
+                  aria-label="Email address"
+                  value={email}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                    if (emailStatus !== "idle") {
+                      setEmailStatus("idle");
+                      setEmailErrorMessage("");
+                    }
+                  }}
+                />
+                <button
+                  className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+                  type="submit"
+                  disabled={emailStatus === "loading"}
+                >
+                  {emailStatus === "loading" ? "Joining..." : "Join Now"}
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </section>
 
