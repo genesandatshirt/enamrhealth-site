@@ -11,6 +11,7 @@ export default function Home() {
   const [emailStatus, setEmailStatus] = useState<
     "idle" | "loading" | "error" | "success"
   >("idle");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const [modal, setModal] = useState<ModalType>(null);
 
@@ -25,7 +26,7 @@ export default function Home() {
 
   const emailHelperText = useMemo(() => {
     if (emailStatus === "error") {
-      return "Please enter a valid email address or try again later.";
+      return emailErrorMessage || "Please enter a valid email address.";
     }
     if (emailStatus === "success") {
       return "Thanks for joining. Please check your email to confirm.";
@@ -39,10 +40,12 @@ export default function Home() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!EMAIL_PATTERN.test(email.trim())) {
+      setEmailErrorMessage("Please enter a valid email address.");
       setEmailStatus("error");
       return;
     }
     setEmailStatus("loading");
+    setEmailErrorMessage("");
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
@@ -51,6 +54,11 @@ export default function Home() {
       });
 
       if (!response.ok) {
+        const errorPayload = await response.json().catch(() => ({}));
+        setEmailErrorMessage(
+          errorPayload?.error ||
+            "Please enter a valid email address or try again later."
+        );
         setEmailStatus("error");
         return;
       }
@@ -58,6 +66,9 @@ export default function Home() {
       setEmailStatus("success");
       setEmail("");
     } catch (error) {
+      setEmailErrorMessage(
+        "Please enter a valid email address or try again later."
+      );
       setEmailStatus("error");
     }
   };
@@ -138,6 +149,7 @@ export default function Home() {
                   setEmail(event.target.value);
                   if (emailStatus !== "idle") {
                     setEmailStatus("idle");
+                    setEmailErrorMessage("");
                   }
                 }}
               />

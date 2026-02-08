@@ -50,8 +50,19 @@ export async function POST(request: Request) {
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}));
+    const detail =
+      typeof error?.detail === "string" ? error.detail : "Unable to join.";
+    if (detail.toLowerCase().includes("permanently deleted")) {
+      return Response.json(
+        {
+          error:
+            "This email was previously removed. Please use a different email or contact support.",
+        },
+        { status: 409 }
+      );
+    }
     return Response.json(
-      { error: error?.detail || "Unable to join the waitlist." },
+      { error: detail || "Unable to join the waitlist." },
       { status: 502 }
     );
   }
