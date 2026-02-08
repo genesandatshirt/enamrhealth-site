@@ -38,8 +38,8 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         email_address: email,
-        status_if_new: "pending",
-        status: "pending",
+        status_if_new: "subscribed",
+        status: "subscribed",
       }),
     }
   );
