@@ -92,9 +92,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="shimmer-bg text-slate-900 relative z-10 min-h-screen flex flex-col">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3 font-[var(--font-display)] text-xs font-semibold uppercase tracking-[0.4em] text-slate-900">
+        <div className="flex items-center gap-3 font-[var(--font-display)] text-lg font-semibold uppercase tracking-[0.4em] text-white">
           ENAMR HEALTH
         </div>
         <a
@@ -105,23 +105,22 @@ export default function Home() {
         </a>
       </header>
 
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(120,182,220,0.55),rgba(18,46,76,0.25)_45%,rgba(8,18,35,0.6)_80%),linear-gradient(135deg,rgba(96,165,205,0.55),rgba(30,58,86,0.3)_55%,rgba(7,10,20,0.8))]" />
+      <section className="relative overflow-hidden mx-auto max-w-6xl z-20">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover z-10"
           autoPlay
           muted
           loop
           playsInline
-          poster="/h9YsvpFvuAEvb1OXNOhZi.jpeg"
+          poster="/hero-poster.jpeg"
         >
           <source
             src="/hero-brushing.mp4"
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/50 to-slate-950/70" />
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-24 text-white sm:py-32">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/20 z-20" />
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-24 text-white sm:py-32 z-30">
           <div className="max-w-2xl space-y-6">
             <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
               What if your health started with your mouth?
@@ -179,37 +178,41 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-200">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2">
-            <p className="font-[var(--font-display)] text-xs uppercase tracking-[0.3em] text-slate-900">
-              Enamr Health
-            </p>
-            <p>Copyright © 2026 Enamr Health. All Rights Reserved.</p>
-          </div>
-          <div className="flex gap-4">
-            <a
-              className="transition hover:text-slate-900"
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram
-            </a>
-            <button
-              className="transition hover:text-slate-900"
-              type="button"
-              onClick={() => setModal("privacy")}
-            >
-              Privacy
-            </button>
-            <button
-              className="transition hover:text-slate-900"
-              type="button"
-              onClick={() => setModal("terms")}
-            >
-              Terms
-            </button>
+      <footer className="footer-with-lights relative overflow-hidden flex-grow">
+        <div className="footer-light-1"></div>
+        <div className="footer-light-2"></div>
+        <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pt-10 pb-10 text-white">
+          <div className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-2">
+              <p className="font-[var(--font-display)] text-xs uppercase tracking-[0.3em] text-white">
+                Enamr Health
+              </p>
+              <p className="text-sm leading-relaxed text-white/80">Copyright © 2026 Enamr Health. All Rights Reserved.</p>
+            </div>
+            <div className="flex gap-4">
+              <a
+                className="text-sm text-white/80 transition hover:text-white"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Instagram
+              </a>
+              <button
+                className="text-sm text-white/80 transition hover:text-white"
+                type="button"
+                onClick={() => setModal("privacy")}
+              >
+                Privacy
+              </button>
+              <button
+                className="text-sm text-white/80 transition hover:text-white"
+                type="button"
+                onClick={() => setModal("terms")}
+              >
+                Terms
+              </button>
+            </div>
           </div>
         </div>
       </footer>
