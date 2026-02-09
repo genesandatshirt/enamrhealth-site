@@ -92,7 +92,7 @@ export default function Home() {
   };
 
   return (
-    <div className="shimmer-bg text-slate-900 relative z-10 min-h-screen flex flex-col">
+    <div className="shimmer-bg text-slate-900 relative z-10 min-h-screen flex flex-col w-full">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
         <div className="flex items-center gap-3 font-[var(--font-display)] text-lg font-semibold uppercase tracking-[0.4em] text-white">
           ENAMR HEALTH
@@ -105,14 +105,13 @@ export default function Home() {
         </a>
       </header>
 
-      <section className="relative overflow-hidden mx-auto max-w-6xl z-20">
+      <section className="video-section relative overflow-hidden w-full z-20">
         <video
           className="absolute inset-0 h-full w-full object-cover z-10"
           autoPlay
           muted
           loop
           playsInline
-          poster="/hero-poster.jpeg"
         >
           <source
             src="/hero-brushing.mp4"
@@ -120,7 +119,7 @@ export default function Home() {
           />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/20 z-20" />
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-24 text-white sm:py-32 z-30">
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-24 text-white sm:py-32 z-30 sm:px-6">
           <div className="max-w-2xl space-y-6">
             <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
               What if your health started with your mouth?
@@ -218,7 +217,7 @@ export default function Home() {
       </footer>
 
       {!cookieAccepted && (
-        <div className="fixed bottom-6 left-1/2 w-[min(92%,420px)] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white/95 p-4 text-xs text-slate-600 shadow-lg backdrop-blur">
+        <div className="fixed bottom-6 left-1/2 z-50 w-[min(92%,420px)] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white/95 p-4 text-xs text-slate-600 shadow-lg backdrop-blur">
           <p className="font-semibold text-slate-900">
             This website uses cookies.
           </p>
