@@ -301,6 +301,9 @@ body {
     right: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    /* Zoom out on mobile so more of the video is visible */
+    transform: scale(0.85);
+    transform-origin: center center;
   }
 }
 
