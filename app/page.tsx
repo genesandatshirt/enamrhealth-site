@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Header from "@/components/Header";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -121,24 +123,7 @@ export default function Home() {
 
   return (
     <div className="shimmer-bg text-slate-900 relative z-10 min-h-screen flex flex-col w-full">
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4 sm:px-6">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 rounded-2xl border border-white/20 bg-white/10 px-3 py-3 sm:gap-4 sm:px-6 sm:py-3 backdrop-blur-xl">
-          <a
-            href="/"
-            className="font-[var(--font-display)] text-sm font-semibold uppercase tracking-[0.2em] text-white sm:text-base sm:tracking-[0.35em] md:text-lg md:tracking-[0.4em]"
-          >
-            ENAMR HEALTH
-          </a>
-          <div className="flex shrink-0 items-center gap-3">
-            <a
-              href="#waitlist"
-              className="whitespace-nowrap rounded-full border border-white bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-slate-900"
-            >
-              Try ENAMR
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <section className="video-section relative overflow-hidden w-full z-20 pt-24 sm:pt-28">
         <video
