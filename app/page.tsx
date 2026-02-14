@@ -135,7 +135,7 @@ export default function Home() {
           />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/20 z-20" />
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-24 text-white sm:py-32 z-30 sm:px-6">
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-16 text-white sm:py-20 z-30 sm:px-6">
           <div className="max-w-2xl space-y-6">
             <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
               What if your health started with your mouth?
@@ -188,7 +188,7 @@ export default function Home() {
           )}
           <div className="max-w-2xl space-y-4">
             <p className="text-base leading-relaxed text-white font-semibold sm:text-lg">
-              Your mouth is too important to keep guessing. Enamr Health has built the ultimate oral care loop - test, track, and treat from home. With 100+ signals and personalized next-steps to reach whole body balance.
+              Your mouth is too important to keep guessing. Enamr Health has built the ultimate oral care loop - test, track, and treat from home. With 100+ signals and personalized next-steps to reach your goals.
             </p>
             <p className="text-base italic text-white/80 sm:text-lg">
               Launching Summer 2026
