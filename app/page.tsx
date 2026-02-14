@@ -72,7 +72,7 @@ export default function Home() {
     if (emailStatus === "loading") {
       return "Submitting your email...";
     }
-    return "Apply now for early access and lock in a free 1-1 results call.";
+    return "Sign up to stay in touch and reserve your spot for early access";
   }, [emailStatus]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -188,7 +188,7 @@ export default function Home() {
           )}
           <div className="max-w-2xl space-y-4">
             <p className="text-base leading-relaxed text-white font-semibold sm:text-lg">
-              Your mouth is too important to keep guessing. Enamr Health has built the ultimate oral care loop - test, track, and treat from home. With 100+ signals and personalized next-steps to reach your goals.
+              Enamr is the ultimate oral care loop — test, track, and treat from home. With 100+ human and microbiome signals and personalized actions to reach your goals. Because your mouth is too important to keep guessing.
             </p>
             <p className="gradient-text font-sans text-center italic text-[20px] leading-[75px] tracking-[-1px] sm:text-lg">
               Launching Summer 2026
