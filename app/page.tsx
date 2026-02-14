@@ -140,10 +140,6 @@ export default function Home() {
             <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
               What if your health started with your mouth?
             </h1>
-            <p className="text-base leading-relaxed text-white/80 sm:text-lg">
-              Explore the journey to better health and a healthier mouth with
-              us.
-            </p>
           </div>
           {showWaitlistBox && (
             <div
@@ -190,6 +186,14 @@ export default function Home() {
               </form>
             </div>
           )}
+          <div className="max-w-2xl space-y-4">
+            <p className="text-base leading-relaxed text-white font-semibold sm:text-lg">
+              Your mouth is too important to keep guessing. Enamr Health has built the ultimate oral care loop - test, track, and treat from home. With 100+ signals and personalized next-steps to reach whole body balance.
+            </p>
+            <p className="text-base italic text-white/80 sm:text-lg">
+              Launching Summer 2026
+            </p>
+          </div>
         </div>
       </section>
 
