@@ -303,3 +303,14 @@ body {
     margin-right: 0 !important;
   }
 }
+
+/* Video grayscale filter */
+.video-grayscale {
+  filter: grayscale(100%) !important;
+  -webkit-filter: grayscale(100%) !important;
+}
+
+video.video-grayscale {
+  filter: grayscale(100%) !important;
+  -webkit-filter: grayscale(100%) !important;
+}

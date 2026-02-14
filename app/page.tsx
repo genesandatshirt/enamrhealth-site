@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -14,6 +14,7 @@ export default function Home() {
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [modal, setModal] = useState<ModalType>(null);
   const [showWaitlistBox, setShowWaitlistBox] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (emailStatus !== "success") {
@@ -90,14 +91,16 @@ export default function Home() {
 
       <section className="video-section relative overflow-hidden w-full z-20">
         <video
-          className="absolute inset-0 h-full w-full object-cover z-10"
+          ref={videoRef}
+          className="absolute inset-0 h-full w-full object-cover z-10 video-grayscale"
+          style={{ filter: 'grayscale(100%)', WebkitFilter: 'grayscale(100%)' }}
           autoPlay
           muted
           loop
           playsInline
         >
           <source
-            src="/hero-brushing.mp4"
+            src="/updated-opener.mp4"
             type="video/mp4"
           />
         </video>
