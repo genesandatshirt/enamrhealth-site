@@ -121,13 +121,52 @@ export default function Home() {
 
   return (
     <div className="shimmer-bg text-slate-900 relative z-10 min-h-screen flex flex-col w-full">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3 font-[var(--font-display)] text-lg font-semibold uppercase tracking-[0.4em] text-white">
-          ENAMR HEALTH
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4 sm:px-6">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 backdrop-blur-xl sm:px-6">
+          <a
+            href="/"
+            className="font-[var(--font-display)] text-base font-semibold uppercase tracking-[0.35em] text-white whitespace-nowrap sm:text-lg sm:tracking-[0.4em]"
+          >
+            ENAMR HEALTH
+          </a>
+          <nav className="hidden items-center gap-10 md:flex md:gap-12 lg:gap-16" aria-label="Main">
+            <a
+              href="#how-it-works"
+              className="text-sm font-bold text-white/90 transition hover:text-white"
+            >
+              How It Works
+            </a>
+            <a
+              href="#science"
+              className="text-sm font-bold text-white/90 transition hover:text-white"
+            >
+              The Science Behind Enamr
+            </a>
+            <a
+              href="#shop"
+              className="text-sm font-bold text-white/90 transition hover:text-white"
+            >
+              Shop
+            </a>
+          </nav>
+          <div className="flex items-center gap-3">
+            <a
+              href="#login"
+              className="text-sm font-medium text-white transition hover:text-white/90"
+            >
+              Login
+            </a>
+            <a
+              href="#waitlist"
+              className="rounded-full border border-white bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white hover:text-slate-900"
+            >
+              Try ENAMR
+            </a>
+          </div>
         </div>
       </header>
 
-      <section className="video-section relative overflow-hidden w-full z-20">
+      <section className="video-section relative overflow-hidden w-full z-20 pt-24 sm:pt-28">
         <video
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover z-10 video-grayscale"
