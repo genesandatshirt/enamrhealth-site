@@ -12,18 +12,8 @@ export default function Home() {
     "idle" | "loading" | "error" | "success"
   >("idle");
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [cookieAccepted, setCookieAccepted] = useState(false);
   const [modal, setModal] = useState<ModalType>(null);
   const [showWaitlistBox, setShowWaitlistBox] = useState(true);
-
-  useEffect(() => {
-    const savedConsent =
-      typeof window !== "undefined" &&
-      window.localStorage.getItem("enamr_cookie_consent") === "true";
-    if (savedConsent) {
-      setCookieAccepted(true);
-    }
-  }, []);
 
   useEffect(() => {
     if (emailStatus !== "success") {
@@ -81,13 +71,6 @@ export default function Home() {
         "Please enter a valid email address or try again later."
       );
       setEmailStatus("error");
-    }
-  };
-
-  const handleCookieAccept = () => {
-    setCookieAccepted(true);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("enamr_cookie_consent", "true");
     }
   };
 
@@ -215,26 +198,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {!cookieAccepted && (
-        <div className="fixed bottom-6 left-1/2 z-50 w-[min(92%,420px)] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white/95 p-4 text-xs text-slate-600 shadow-lg backdrop-blur">
-          <p className="font-semibold text-slate-900">
-            This website uses cookies.
-          </p>
-          <p className="mt-1 text-slate-500">
-            We use cookies to analyze website traffic and optimize your website
-            experience. By accepting our use of cookies, your data will be
-            aggregated with all other user data.
-          </p>
-          <button
-            className="mt-3 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white"
-            type="button"
-            onClick={handleCookieAccept}
-          >
-            Accept
-          </button>
-        </div>
-      )}
 
       {modal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-6">
