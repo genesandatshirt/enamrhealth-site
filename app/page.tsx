@@ -16,6 +16,14 @@ export default function Home() {
   const [showWaitlistBox, setShowWaitlistBox] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Slow video down by 20%
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 0.8;
+    }
+  }, []);
+
   // Ensure page loads at the top
   useEffect(() => {
     // Immediately scroll to top
@@ -128,6 +136,7 @@ export default function Home() {
           muted
           loop
           playsInline
+          onLoadedMetadata={(e) => { e.currentTarget.playbackRate = 0.8; }}
         >
           <source
             src="/updated-opener.mp4"
