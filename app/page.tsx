@@ -129,26 +129,6 @@ export default function Home() {
           >
             ENAMR HEALTH
           </a>
-          <nav className="hidden items-center gap-10 md:flex md:gap-12 lg:gap-16" aria-label="Main">
-            <a
-              href="#how-it-works"
-              className="text-sm font-bold text-white/90 transition hover:text-white"
-            >
-              How It Works
-            </a>
-            <a
-              href="#science"
-              className="text-sm font-bold text-white/90 transition hover:text-white"
-            >
-              The Science Behind Enamr
-            </a>
-            <a
-              href="#shop"
-              className="text-sm font-bold text-white/90 transition hover:text-white"
-            >
-              Shop
-            </a>
-          </nav>
           <div className="flex shrink-0 items-center gap-3">
             <a
               href="#waitlist"
