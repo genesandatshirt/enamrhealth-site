@@ -117,12 +117,6 @@ export default function Home() {
         <div className="flex items-center gap-3 font-[var(--font-display)] text-lg font-semibold uppercase tracking-[0.4em] text-white">
           ENAMR HEALTH
         </div>
-        <a
-          className="rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"
-          href="#waitlist"
-        >
-          Join the waitlist
-        </a>
       </header>
 
       <section className="video-section relative overflow-hidden w-full z-20">
