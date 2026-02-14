@@ -190,9 +190,6 @@ export default function Home() {
             <p className="text-base leading-relaxed text-white font-semibold sm:text-lg">
               Enamr is the ultimate oral care loop — test, track, and treat from home. With 100+ human and microbiome signals and personalized actions to reach your goals.
             </p>
-            <p className="text-base leading-relaxed text-white font-semibold sm:text-lg">
-              Because your mouth is too important to keep guessing.
-            </p>
             <p className="gradient-text font-sans text-center italic text-[20px] leading-[75px] tracking-[-1px] sm:text-lg">
               Launching Summer 2026
             </p>
