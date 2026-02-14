@@ -16,6 +16,42 @@ export default function Home() {
   const [showWaitlistBox, setShowWaitlistBox] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Ensure page loads at the top
+  useEffect(() => {
+    // Immediately scroll to top
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Prevent scroll restoration
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    
+    // Handle hash links only if explicitly navigating to them
+    // Otherwise, ensure we stay at top
+    const handleHashChange = () => {
+      if (window.location.hash && window.location.hash !== '#waitlist') {
+        setTimeout(() => {
+          const element = document.querySelector(window.location.hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+    
+    // If there's a hash on initial load, clear it to prevent auto-scroll
+    if (window.location.hash === '#waitlist') {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+    
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   useEffect(() => {
     if (emailStatus !== "success") {
       return;
