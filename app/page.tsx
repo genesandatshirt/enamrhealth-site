@@ -146,7 +146,7 @@ export default function Home() {
               className="max-w-xl rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur"
               id="waitlist"
             >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
+              <p className="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
                 Join the wait list today
               </p>
               <p
@@ -190,7 +190,7 @@ export default function Home() {
             <p className="text-base leading-relaxed text-white font-semibold sm:text-lg">
               Your mouth is too important to keep guessing. Enamr Health has built the ultimate oral care loop - test, track, and treat from home. With 100+ signals and personalized next-steps to reach your goals.
             </p>
-            <p className="text-base italic text-white/80 sm:text-lg">
+            <p className="gradient-text font-sans text-center italic text-[20px] leading-[75px] tracking-[-1px] sm:text-lg">
               Launching Summer 2026
             </p>
           </div>
