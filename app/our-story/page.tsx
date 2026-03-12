@@ -8,10 +8,27 @@ export const metadata = {
 
 export default function OurStoryPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="relative min-h-screen overflow-x-hidden bg-black text-white">
+      {/* Full-page background video (behind header/content) */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ filter: "grayscale(100%)", WebkitFilter: "grayscale(100%)" }}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        >
+          <source src="/our-story-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/75" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_40%,rgba(0,0,0,0.75)_100%)]" />
+      </div>
+
       <Header />
 
-      <main className="pt-24 sm:pt-28">
+      <main className="relative z-10 pt-24 sm:pt-28">
         {/* Breadcrumb */}
         <div className="mx-auto max-w-6xl px-4 pb-4 sm:px-6">
           <Link
@@ -20,23 +37,6 @@ export default function OurStoryPage() {
           >
             ← Back to home
           </Link>
-        </div>
-
-        {/* Hero video */}
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-8">
-          <div className="soft-edge-media relative aspect-video w-full overflow-hidden rounded-[2rem] bg-white/5">
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-            >
-              <source src="/our-story-hero.mp4" type="video/mp4" />
-            </video>
-            {/* Fallback vignette (helps even without mask support) */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_55%,rgba(0,0,0,0.85)_100%)]" />
-          </div>
         </div>
 
         {/* Blog article layout - Superpower style */}
