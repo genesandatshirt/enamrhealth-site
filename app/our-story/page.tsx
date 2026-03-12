@@ -13,7 +13,6 @@ export default function OurStoryPage() {
       <div className="pointer-events-none fixed inset-0 z-0">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ filter: "grayscale(100%)", WebkitFilter: "grayscale(100%)" }}
           autoPlay
           muted
           loop
