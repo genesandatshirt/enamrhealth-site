@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 
@@ -23,17 +22,20 @@ export default function OurStoryPage() {
           </Link>
         </div>
 
-        {/* Hero image (B&W) */}
+        {/* Hero video */}
         <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-8">
-          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[2rem] bg-white/5">
-            <Image
-              src="/our-story-hero-mouth.png"
-              alt="Abstract mouths collage"
-              fill
-              priority
-              className="object-cover grayscale"
-              sizes="(max-width: 1280px) 100vw, 1280px"
-            />
+          <div className="soft-edge-media relative aspect-video w-full overflow-hidden rounded-[2rem] bg-white/5">
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src="/our-story-hero.mp4" type="video/mp4" />
+            </video>
+            {/* Fallback vignette (helps even without mask support) */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_55%,rgba(0,0,0,0.85)_100%)]" />
           </div>
         </div>
 
