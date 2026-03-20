@@ -122,27 +122,29 @@ export default function Home() {
   };
 
   return (
-    <div className="shimmer-bg text-slate-900 relative z-10 min-h-screen flex flex-col w-full">
+    <div className="shimmer-bg isolate text-slate-900 relative min-h-screen flex flex-col w-full">
       <Header />
 
-      <section className="video-section relative overflow-hidden w-full z-20 pt-24 sm:pt-28">
+      {/* Full-page background video */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover z-10 video-grayscale"
-          style={{ filter: 'grayscale(100%)', WebkitFilter: 'grayscale(100%)' }}
+          className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop
           playsInline
-          onLoadedMetadata={(e) => { e.currentTarget.playbackRate = 0.8; }}
+          onLoadedMetadata={(e) => {
+            e.currentTarget.playbackRate = 0.8;
+          }}
         >
-          <source
-            src="/updated-opener.mp4"
-            type="video/mp4"
-          />
+          <source src="/our-story-hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/20 z-20" />
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-16 text-white sm:py-20 z-30 sm:px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/20" />
+      </div>
+
+      <section className="relative w-full pt-24 sm:pt-28">
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-16 text-white sm:py-20 sm:px-6">
           <div className="max-w-2xl space-y-6">
             <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
               What if your health started with your mouth?
@@ -215,7 +217,7 @@ export default function Home() {
             <div className="flex gap-4">
               <a
                 className="text-sm text-white/80 transition hover:text-white"
-                href="https://instagram.com"
+                href="https://instagram.com/enamrhealth"
                 target="_blank"
                 rel="noreferrer"
               >

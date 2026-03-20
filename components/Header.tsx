@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -7,9 +8,17 @@ export default function Header() {
         <div className="grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:gap-4">
           <Link
             href="/"
-            className="font-[var(--font-display)] text-[clamp(9px,2.6vw,11px)] font-semibold uppercase leading-none tracking-[0.1em] text-white sm:text-base sm:tracking-[0.35em] md:text-lg md:tracking-[0.4em]"
+            className="flex items-center"
+            aria-label="Enamr Health"
           >
-            ENAMR HEALTH
+            <Image
+              src="/enamr-logo-mark.png"
+              alt="Enamr Health"
+              width={256}
+              height={256}
+              priority
+              className="h-[clamp(26px,6.4vw,44px)] w-auto"
+            />
           </Link>
 
           <Link

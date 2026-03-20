@@ -304,17 +304,6 @@ body {
   }
 }
 
-/* Video grayscale filter */
-.video-grayscale {
-  filter: grayscale(100%) !important;
-  -webkit-filter: grayscale(100%) !important;
-}
-
-video.video-grayscale {
-  filter: grayscale(100%) !important;
-  -webkit-filter: grayscale(100%) !important;
-}
-
 /* Gradient text: white-to-black, clipped to text */
 .gradient-text {
   background-image: linear-gradient(
