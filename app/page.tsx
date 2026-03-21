@@ -195,11 +195,6 @@ export default function Home() {
               </form>
             </div>
           )}
-          <div className="max-w-2xl space-y-4">
-            <p className="gradient-text font-sans text-center italic text-[20px] leading-[75px] tracking-[-1px] sm:text-lg">
-              Launching Summer 2026
-            </p>
-          </div>
         </div>
       </section>
 
