@@ -16,9 +16,34 @@ export async function POST(request: Request) {
 
   const body = await request.json().catch(() => null);
   const email = typeof body?.email === "string" ? body.email.trim() : "";
+  const firstName = typeof body?.firstName === "string" ? body.firstName.trim() : "";
+  const lastName = typeof body?.lastName === "string" ? body.lastName.trim() : "";
+  const healthQuestion =
+    typeof body?.healthQuestion === "string" ? body.healthQuestion.trim() : "";
 
   if (!EMAIL_PATTERN.test(email)) {
     return Response.json({ error: "Invalid email address." }, { status: 400 });
+  }
+
+  if (!firstName || !lastName) {
+    return Response.json(
+      { error: "First and last name are required." },
+      { status: 400 }
+    );
+  }
+
+  if (!healthQuestion) {
+    return Response.json(
+      { error: "Please tell us what you want to know about your health." },
+      { status: 400 }
+    );
+  }
+
+  if (healthQuestion.length > 1000) {
+    return Response.json(
+      { error: "Please keep your message under 1000 characters." },
+      { status: 400 }
+    );
   }
 
   const subscriberHash = crypto
@@ -41,8 +66,8 @@ export async function POST(request: Request) {
         status_if_new: "subscribed",
         status: "subscribed",
         merge_fields: {
-          FNAME: "Friend",
-          LNAME: "Waitlist",
+          FNAME: firstName || "Friend",
+          LNAME: lastName || "Waitlist",
         },
       }),
     }
@@ -65,6 +90,26 @@ export async function POST(request: Request) {
       { error: detail || "Unable to join the waitlist." },
       { status: 502 }
     );
+  }
+
+  // Store the user's "what they want to know" as a Mailchimp note so it works
+  // without requiring custom merge field setup in the audience.
+  if (healthQuestion) {
+    await fetch(
+      `https://${MAILCHIMP_SERVER_PREFIX}.api.mailchimp.com/3.0/lists/${MAILCHIMP_AUDIENCE_ID}/members/${subscriberHash}/notes`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            `anystring:${MAILCHIMP_API_KEY}`
+          ).toString("base64")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          note: `What I want to know about my health: ${healthQuestion}`,
+        }),
+      }
+    ).catch(() => null);
   }
 
   return Response.json({ success: true });

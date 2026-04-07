@@ -9,7 +9,10 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 type ModalType = "privacy" | "terms" | null;
 
 export default function Home() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [healthQuestion, setHealthQuestion] = useState("");
   const [emailStatus, setEmailStatus] = useState<
     "idle" | "loading" | "error" | "success"
   >("idle");
@@ -80,15 +83,25 @@ export default function Home() {
       return "Thanks for joining. Please check your email to confirm.";
     }
     if (emailStatus === "loading") {
-      return "Submitting your email...";
+      return "Submitting your info...";
     }
     return "Sign up to stay in touch and reserve your spot for early access";
   }, [emailStatus]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!firstName.trim() || !lastName.trim()) {
+      setEmailErrorMessage("Please enter your first and last name.");
+      setEmailStatus("error");
+      return;
+    }
     if (!EMAIL_PATTERN.test(email.trim())) {
       setEmailErrorMessage("Please enter a valid email address.");
+      setEmailStatus("error");
+      return;
+    }
+    if (!healthQuestion.trim()) {
+      setEmailErrorMessage("Tell us what you want to know about your health.");
       setEmailStatus("error");
       return;
     }
@@ -98,7 +111,12 @@ export default function Home() {
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          email: email.trim(),
+          healthQuestion: healthQuestion.trim(),
+        }),
       });
 
       if (!response.ok) {
@@ -112,7 +130,10 @@ export default function Home() {
       }
 
       setEmailStatus("success");
+      setFirstName("");
+      setLastName("");
       setEmail("");
+      setHealthQuestion("");
     } catch (error) {
       setEmailErrorMessage(
         "Please enter a valid email address or try again later."
@@ -167,11 +188,41 @@ export default function Home() {
                 {emailHelperText}
               </p>
               <form
-                className="mt-4 flex flex-col gap-3 sm:flex-row"
+                className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"
                 onSubmit={handleSubmit}
               >
                 <input
-                  className="w-full flex-1 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                  className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                  placeholder="First name"
+                  type="text"
+                  name="firstName"
+                  aria-label="First name"
+                  value={firstName}
+                  onChange={(event) => {
+                    setFirstName(event.target.value);
+                    if (emailStatus !== "idle") {
+                      setEmailStatus("idle");
+                      setEmailErrorMessage("");
+                    }
+                  }}
+                />
+                <input
+                  className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                  placeholder="Last name"
+                  type="text"
+                  name="lastName"
+                  aria-label="Last name"
+                  value={lastName}
+                  onChange={(event) => {
+                    setLastName(event.target.value);
+                    if (emailStatus !== "idle") {
+                      setEmailStatus("idle");
+                      setEmailErrorMessage("");
+                    }
+                  }}
+                />
+                <input
+                  className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
                   placeholder="Email address"
                   type="email"
                   name="email"
@@ -185,8 +236,22 @@ export default function Home() {
                     }
                   }}
                 />
+                <textarea
+                  className="min-h-[96px] w-full resize-none rounded-2xl border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
+                  placeholder="What do you want to know about your health?"
+                  name="healthQuestion"
+                  aria-label="What do you want to know about your health?"
+                  value={healthQuestion}
+                  onChange={(event) => {
+                    setHealthQuestion(event.target.value);
+                    if (emailStatus !== "idle") {
+                      setEmailStatus("idle");
+                      setEmailErrorMessage("");
+                    }
+                  }}
+                />
                 <button
-                  className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+                  className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 sm:col-span-2"
                   type="submit"
                   disabled={emailStatus === "loading"}
                 >
