@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 
 export const metadata = {
   title: "Every Mouth Has a Story | Enamr Health",
-  description: "Why we're building the ultimate oral care loop.",
+  description: "Why we started Enamr Health.",
 };
 
 export default function OurStoryPage() {
@@ -45,7 +45,7 @@ export default function OurStoryPage() {
           </h1>
 
           <p className="mt-4 text-lg italic text-white/80">
-            Why we're building the ultimate oral care loop.
+            Why we started Enamr Health
           </p>
 
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-1 text-sm text-white/60">
