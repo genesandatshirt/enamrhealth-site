@@ -172,92 +172,101 @@ export default function Home() {
             </h1>
           </div>
           {showWaitlistBox && (
-            <div
-              className="max-w-xl rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur"
-              id="waitlist"
-            >
-              <p className="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
-                Join the wait list today
-              </p>
-              <p
-                className={`mt-2 text-sm ${
-                  emailStatus === "error" ? "text-red-200" : "text-white/70"
-                }`}
-                aria-live="polite"
-              >
-                {emailHelperText}
-              </p>
-              <form
-                className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"
-                onSubmit={handleSubmit}
-              >
-                <input
-                  className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
-                  placeholder="First name"
-                  type="text"
-                  name="firstName"
-                  aria-label="First name"
-                  value={firstName}
-                  onChange={(event) => {
-                    setFirstName(event.target.value);
-                    if (emailStatus !== "idle") {
-                      setEmailStatus("idle");
-                      setEmailErrorMessage("");
-                    }
-                  }}
-                />
-                <input
-                  className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
-                  placeholder="Last name"
-                  type="text"
-                  name="lastName"
-                  aria-label="Last name"
-                  value={lastName}
-                  onChange={(event) => {
-                    setLastName(event.target.value);
-                    if (emailStatus !== "idle") {
-                      setEmailStatus("idle");
-                      setEmailErrorMessage("");
-                    }
-                  }}
-                />
-                <input
-                  className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
-                  placeholder="Email address"
-                  type="email"
-                  name="email"
-                  aria-label="Email address"
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    if (emailStatus !== "idle") {
-                      setEmailStatus("idle");
-                      setEmailErrorMessage("");
-                    }
-                  }}
-                />
-                <textarea
-                  className="min-h-[96px] w-full resize-none rounded-2xl border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
-                  placeholder="What do you want to know about your health?"
-                  name="healthQuestion"
-                  aria-label="What do you want to know about your health?"
-                  value={healthQuestion}
-                  onChange={(event) => {
-                    setHealthQuestion(event.target.value);
-                    if (emailStatus !== "idle") {
-                      setEmailStatus("idle");
-                      setEmailErrorMessage("");
-                    }
-                  }}
-                />
-                <button
-                  className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 sm:col-span-2"
-                  type="submit"
-                  disabled={emailStatus === "loading"}
+            <div className="max-w-xl space-y-3" id="waitlist">
+              <div className="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur">
+                <p className="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
+                  Join the wait list today
+                </p>
+                <p
+                  className={`mt-2 text-sm ${
+                    emailStatus === "error" ? "text-red-200" : "text-white/70"
+                  }`}
+                  aria-live="polite"
                 >
-                  {emailStatus === "loading" ? "Joining..." : "Join Now"}
-                </button>
-              </form>
+                  {emailHelperText}
+                </p>
+                <form
+                  className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"
+                  onSubmit={handleSubmit}
+                >
+                  <input
+                    className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                    placeholder="First name"
+                    type="text"
+                    name="firstName"
+                    aria-label="First name"
+                    value={firstName}
+                    onChange={(event) => {
+                      setFirstName(event.target.value);
+                      if (emailStatus !== "idle") {
+                        setEmailStatus("idle");
+                        setEmailErrorMessage("");
+                      }
+                    }}
+                  />
+                  <input
+                    className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+                    placeholder="Last name"
+                    type="text"
+                    name="lastName"
+                    aria-label="Last name"
+                    value={lastName}
+                    onChange={(event) => {
+                      setLastName(event.target.value);
+                      if (emailStatus !== "idle") {
+                        setEmailStatus("idle");
+                        setEmailErrorMessage("");
+                      }
+                    }}
+                  />
+                  <input
+                    className="w-full rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
+                    placeholder="Email address"
+                    type="email"
+                    name="email"
+                    aria-label="Email address"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                      if (emailStatus !== "idle") {
+                        setEmailStatus("idle");
+                        setEmailErrorMessage("");
+                      }
+                    }}
+                  />
+                  <textarea
+                    className="min-h-[96px] w-full resize-none rounded-2xl border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
+                    placeholder="What do you want to know about your health?"
+                    name="healthQuestion"
+                    aria-label="What do you want to know about your health?"
+                    value={healthQuestion}
+                    onChange={(event) => {
+                      setHealthQuestion(event.target.value);
+                      if (emailStatus !== "idle") {
+                        setEmailStatus("idle");
+                        setEmailErrorMessage("");
+                      }
+                    }}
+                  />
+                  <button
+                    className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 sm:col-span-2"
+                    type="submit"
+                    disabled={emailStatus === "loading"}
+                  >
+                    {emailStatus === "loading" ? "Joining..." : "Join Now"}
+                  </button>
+                </form>
+              </div>
+
+              <Link
+                href="/providers"
+                className="block rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-sm text-white/85 backdrop-blur-xl transition hover:bg-white/15 hover:text-white"
+              >
+                <span className="block">Are you a healthcare provider?</span>
+                <span className="mt-1 block font-semibold text-white">
+                  Login or signup here.
+                </span>
+              </Link>
             </div>
           )}
         </div>
