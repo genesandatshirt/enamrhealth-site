@@ -25,7 +25,7 @@ export default function ProvidersPage() {
 
       <Header />
 
-      <main className="relative mx-auto w-full max-w-3xl px-6 pb-24 pt-24 sm:pt-28">
+      <main className="relative mx-auto w-full max-w-3xl px-6 pb-24 pt-28 sm:pt-32">
         <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
           Providers
         </h1>

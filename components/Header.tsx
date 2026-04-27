@@ -62,18 +62,12 @@ export default function Header() {
             </Link>
 
             {/* Desktop center nav */}
-            <nav className="hidden justify-self-center gap-6 sm:flex">
+            <nav className="hidden justify-self-center gap-8 sm:flex md:gap-10">
               <Link
                 href="/our-story"
                 className="whitespace-nowrap text-sm font-semibold text-white/90 transition hover:text-white md:text-base"
               >
                 Every Mouth Has a Story
-              </Link>
-              <Link
-                href="/shop"
-                className="whitespace-nowrap text-sm font-semibold text-white/90 transition hover:text-white md:text-base"
-              >
-                Shop
               </Link>
             </nav>
 
@@ -129,13 +123,6 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
               >
                 Every Mouth Has a Story
-              </Link>
-              <Link
-                href="/shop"
-                className="block rounded-xl px-3 py-3 text-base font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
-                onClick={() => setMenuOpen(false)}
-              >
-                Shop
               </Link>
               <Link
                 href="/providers"
