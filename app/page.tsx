@@ -100,14 +100,10 @@ export default function Home() {
       setEmailStatus("error");
       return;
     }
-    if (!healthQuestion.trim()) {
-      setEmailErrorMessage("Tell us what you want to know about your health.");
-      setEmailStatus("error");
-      return;
-    }
     setEmailStatus("loading");
     setEmailErrorMessage("");
     try {
+      const trimmedQuestion = healthQuestion.trim();
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -115,7 +111,7 @@ export default function Home() {
           firstName: firstName.trim(),
           lastName: lastName.trim(),
           email: email.trim(),
-          healthQuestion: healthQuestion.trim(),
+          ...(trimmedQuestion ? { healthQuestion: trimmedQuestion } : {}),
         }),
       });
 
@@ -236,7 +232,7 @@ export default function Home() {
                   />
                   <textarea
                     className="min-h-[96px] w-full resize-none rounded-2xl border border-white/30 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none sm:col-span-2"
-                    placeholder="What do you want to know about your health?"
+                    placeholder="What do you want to know about your health? (optional)"
                     name="healthQuestion"
                     aria-label="What do you want to know about your health?"
                     value={healthQuestion}

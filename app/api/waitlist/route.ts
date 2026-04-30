@@ -32,14 +32,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!healthQuestion) {
-    return Response.json(
-      { error: "Please tell us what you want to know about your health." },
-      { status: 400 }
-    );
-  }
-
-  if (healthQuestion.length > 1000) {
+  if (healthQuestion && healthQuestion.length > 1000) {
     return Response.json(
       { error: "Please keep your message under 1000 characters." },
       { status: 400 }
