@@ -78,7 +78,7 @@ export default function ProvidersPage() {
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
           <a
             className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
-            href="mailto:partnerships@enamr.com?subject=Provider%20pilot%20application"
+            href="mailto:providers@enamrhealth.com?subject=Provider%20pilot%20application"
           >
             Apply for the pilot →
           </a>
@@ -86,9 +86,9 @@ export default function ProvidersPage() {
             Researcher, DSO, or strategic partner? Email{" "}
             <a
               className="font-semibold text-white/85 underline decoration-white/20 underline-offset-4 transition hover:text-white hover:decoration-white/40"
-              href="mailto:partnerships@enamr.com"
+              href="mailto:science@enamrhealth.com"
             >
-              partnerships@enamr.com
+              science@enamrhealth.com
             </a>
             .
           </p>

@@ -289,7 +289,7 @@ export default function Header() {
                             <div className="text-xs text-white/60">2026</div>
                           </div>
                           <div className="mt-3 text-base font-semibold text-white">
-                            Enamr storefront
+                            Enamr Shop
                           </div>
                           <div className="mt-1 text-sm leading-relaxed text-white/70">
                             A small preview of what’s coming next.
