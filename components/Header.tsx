@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+type DesktopDropdown = "explore" | "shop" | null;
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [learnOpen, setLearnOpen] = useState(false);
-  const learnCloseTimerRef = useRef<number | null>(null);
+  const [desktopDropdown, setDesktopDropdown] = useState<DesktopDropdown>(null);
+  const desktopCloseTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -23,39 +25,42 @@ export default function Header() {
 
   useEffect(() => {
     return () => {
-      if (learnCloseTimerRef.current) {
-        window.clearTimeout(learnCloseTimerRef.current);
+      if (desktopCloseTimerRef.current) {
+        window.clearTimeout(desktopCloseTimerRef.current);
       }
     };
   }, []);
 
-  const openLearn = () => {
-    if (learnCloseTimerRef.current) {
-      window.clearTimeout(learnCloseTimerRef.current);
-      learnCloseTimerRef.current = null;
+  const openDropdown = (name: Exclude<DesktopDropdown, null>) => {
+    if (desktopCloseTimerRef.current) {
+      window.clearTimeout(desktopCloseTimerRef.current);
+      desktopCloseTimerRef.current = null;
     }
-    setLearnOpen(true);
+    setDesktopDropdown(name);
   };
 
-  const closeLearnWithDelay = (delayMs = 1400) => {
-    if (learnCloseTimerRef.current) {
-      window.clearTimeout(learnCloseTimerRef.current);
+  const closeDropdownWithDelay = (delayMs = 900) => {
+    if (desktopCloseTimerRef.current) {
+      window.clearTimeout(desktopCloseTimerRef.current);
     }
-    learnCloseTimerRef.current = window.setTimeout(() => {
-      setLearnOpen(false);
-      learnCloseTimerRef.current = null;
+    desktopCloseTimerRef.current = window.setTimeout(() => {
+      setDesktopDropdown(null);
+      desktopCloseTimerRef.current = null;
     }, delayMs);
   };
+
+  const dropdownOpen = (name: Exclude<DesktopDropdown, null>) =>
+    desktopDropdown === name;
 
   return (
     <>
       {/* Desktop dropdown backdrop (keeps menu feeling "in front") */}
-      {learnOpen && (
+      {desktopDropdown && (
         <button
           type="button"
-          aria-label="Close Learn menu"
+          aria-label="Close menu"
           className="fixed left-0 right-0 bottom-0 top-24 z-[40] hidden bg-black/35 backdrop-blur-[1px] sm:block"
-          onClick={() => setLearnOpen(false)}
+          onClick={() => setDesktopDropdown(null)}
         />
       )}
 
@@ -102,24 +107,24 @@ export default function Header() {
             {/* Desktop center nav */}
             <nav className="hidden justify-self-center gap-8 sm:flex md:gap-10">
               <div
-                className="group/learn"
-                onMouseEnter={openLearn}
-                onMouseLeave={() => closeLearnWithDelay(1400)}
-                onFocus={openLearn}
-                onBlur={() => closeLearnWithDelay(450)}
+                className="group/explore"
+                onMouseEnter={() => openDropdown("explore")}
+                onMouseLeave={() => closeDropdownWithDelay(900)}
+                onFocus={() => openDropdown("explore")}
+                onBlur={() => closeDropdownWithDelay(450)}
               >
                 <Link
                   href="/our-story"
                   className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white/90 transition hover:text-white md:text-base"
                 >
-                  Learn
+                  Explore
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     className={[
                       "h-4 w-4 text-white/70 transition",
-                      learnOpen ? "rotate-180 text-white/90" : "",
+                      dropdownOpen("explore") ? "rotate-180 text-white/90" : "",
                     ].join(" ")}
                   >
                     <path
@@ -134,12 +139,12 @@ export default function Header() {
                 <div
                   className={[
                     "absolute left-1/2 top-full z-[90] w-[min(640px,calc(100vw-32px))] -translate-x-1/2 pt-4 transition duration-200",
-                    learnOpen
+                    dropdownOpen("explore")
                       ? "visible pointer-events-auto translate-y-0 scale-100 opacity-100"
                       : "invisible pointer-events-none translate-y-2 scale-[0.98] opacity-0",
                   ].join(" ")}
-                  onMouseEnter={openLearn}
-                  onMouseLeave={() => closeLearnWithDelay(1400)}
+                  onMouseEnter={() => openDropdown("explore")}
+                  onMouseLeave={() => closeDropdownWithDelay(900)}
                 >
                   <div className="relative">
                     {/* Little “pointer” so panel feels attached, without overlap */}
@@ -158,7 +163,7 @@ export default function Header() {
                             Browse
                           </div>
                           <div className="mt-2 text-base font-semibold text-white">
-                            All Learn
+                            All Explore
                           </div>
                           <div className="mt-1 text-sm leading-relaxed text-white/70">
                             Search, filter, and explore Enamr stories.
@@ -201,6 +206,109 @@ export default function Header() {
                           className="text-xs font-semibold text-white/75 transition hover:text-white"
                         >
                           View all →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="group/shop"
+                onMouseEnter={() => openDropdown("shop")}
+                onMouseLeave={() => closeDropdownWithDelay(900)}
+                onFocus={() => openDropdown("shop")}
+                onBlur={() => closeDropdownWithDelay(450)}
+              >
+                <Link
+                  href="/shop"
+                  className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white/90 transition hover:text-white md:text-base"
+                >
+                  Shop
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className={[
+                      "h-4 w-4 text-white/70 transition",
+                      dropdownOpen("shop") ? "rotate-180 text-white/90" : "",
+                    ].join(" ")}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Link>
+
+                <div
+                  className={[
+                    "absolute left-1/2 top-full z-[90] w-[min(640px,calc(100vw-32px))] -translate-x-1/2 pt-4 transition duration-200",
+                    dropdownOpen("shop")
+                      ? "visible pointer-events-auto translate-y-0 scale-100 opacity-100"
+                      : "invisible pointer-events-none translate-y-2 scale-[0.98] opacity-0",
+                  ].join(" ")}
+                  onMouseEnter={() => openDropdown("shop")}
+                  onMouseLeave={() => closeDropdownWithDelay(900)}
+                >
+                  <div className="relative">
+                    <div className="absolute left-1/2 top-2 h-3 w-3 -translate-x-1/2 rotate-45 border border-white/20 bg-slate-950/90 backdrop-blur-2xl" />
+
+                    <div className="relative rounded-3xl border border-white/25 bg-slate-950/95 p-3 shadow-[0_28px_90px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:p-4">
+                      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-b from-white/16 via-white/8 to-transparent" />
+                      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_55%)]" />
+
+                      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                        <Link
+                          href="/shop"
+                          className="relative group/item rounded-2xl border border-white/15 bg-white/12 p-4 transition hover:border-white/30 hover:bg-white/16"
+                        >
+                          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                            Browse
+                          </div>
+                          <div className="mt-2 text-base font-semibold text-white">
+                            Shop all
+                          </div>
+                          <div className="mt-1 text-sm leading-relaxed text-white/70">
+                            Explore tests and products designed for the oral care loop.
+                          </div>
+                          <div className="mt-4 text-sm font-semibold text-white/85 transition group-hover/item:text-white">
+                            Open shop →
+                          </div>
+                        </Link>
+
+                        <Link
+                          href="/shop"
+                          className="relative group/item rounded-2xl border border-white/15 bg-white/12 p-4 transition hover:border-white/30 hover:bg-white/16"
+                        >
+                          <div className="flex items-center justify-between gap-4">
+                            <div className="inline-flex rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/75">
+                              Coming soon
+                            </div>
+                            <div className="text-xs text-white/60">2026</div>
+                          </div>
+                          <div className="mt-3 text-base font-semibold text-white">
+                            Enamr storefront
+                          </div>
+                          <div className="mt-1 text-sm leading-relaxed text-white/70">
+                            A small preview of what’s coming next.
+                          </div>
+                          <div className="mt-4 text-sm font-semibold text-white/85 transition group-hover/item:text-white">
+                            Preview →
+                          </div>
+                        </Link>
+                      </div>
+
+                      <div className="mt-3 flex items-center justify-between px-1">
+                        <div className="text-xs text-white/60">
+                          Filter by category or indication
+                        </div>
+                        <Link
+                          href="/shop"
+                          className="text-xs font-semibold text-white/75 transition hover:text-white"
+                        >
+                          View shop →
                         </Link>
                       </div>
                     </div>
@@ -260,7 +368,14 @@ export default function Header() {
                 className="block rounded-xl px-3 py-3 text-base font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
                 onClick={() => setMenuOpen(false)}
               >
-                Learn
+                Explore
+              </Link>
+              <Link
+                href="/shop"
+                className="block rounded-xl px-3 py-3 text-base font-semibold text-white/90 transition hover:bg-white/10 hover:text-white"
+                onClick={() => setMenuOpen(false)}
+              >
+                Shop
               </Link>
               <Link
                 href="/providers"

@@ -144,21 +144,22 @@ export function EveryMouthHasAStoryContent() {
           Where we are now
         </h2>
         <p className="leading-relaxed text-white/85">
-          <strong>We&apos;re launching this summer.</strong> Our first at-home kits
+          <strong>We&apos;re launching this summer.</strong> Our first at-home tests
           ship in <strong>Summer 2026</strong>, and we&apos;re opening{" "}
           <strong>early access</strong> to a limited group of users who want to be
           among the first to see what their mouth is really telling them.
         </p>
         <p className="leading-relaxed text-white/85">
-          Early access members will get <strong>first priority</strong> on kits, a
-          first look at their biomarker results, and a <strong>direct line</strong>{" "}
+          Early access members will get <strong>first priority</strong> on tests,
+          a first look at their biomarker results, and a{" "}
+          <strong>direct line</strong>{" "}
           to our team as we roll out new features. This is the beginning of the
           loop — and we want the people who care most about their health shaping
           it with us.
         </p>
         <p className="leading-relaxed text-white/85">
           <strong>Join the waitlist</strong> to lock in your spot and be the first
-          to know when kits go live.
+          to know when tests go live.
         </p>
       </section>
     </div>

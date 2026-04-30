@@ -30,7 +30,7 @@
 ## Imagery
 - **Style:** Warm, candid, natural light, health‑oriented.
 - **Hero:** Video of a person brushing teeth in a calm, modern bathroom.
-- **Product/kit:** Clean tabletop shots, soft shadows, blue accent packaging.
+- **Product/test:** Clean tabletop shots, soft shadows, blue accent packaging.
 
 ## UI patterns
 - **Buttons:** Pill shape, solid dark background, white text.

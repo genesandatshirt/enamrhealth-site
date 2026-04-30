@@ -162,13 +162,13 @@ export default function Home() {
 
       <section className="relative w-full pt-24 sm:pt-28">
         <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-16 text-white sm:py-20 sm:px-6">
-          <div className="max-w-2xl space-y-6">
-            <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
-              What if your health started with your mouth?
+          <div className="mx-auto max-w-2xl space-y-6 text-center">
+            <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              Your Mouth Has Been Trying to Tell You Something
             </h1>
           </div>
           {showWaitlistBox && (
-            <div className="max-w-xl space-y-3" id="waitlist">
+            <div className="mx-auto w-full max-w-xl space-y-3" id="waitlist">
               <div className="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur">
                 <p className="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
                   Join the wait list today
