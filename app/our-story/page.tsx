@@ -57,7 +57,7 @@ export default function OurStoryPage() {
             <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl">
               <div className="relative aspect-[16/10] w-full">
                 <Image
-                  src="/explore-hero-v2.png"
+                  src="/explore-hero-v4.png"
                   alt="Explore"
                   fill
                   className="object-cover"
