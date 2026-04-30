@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { InstagramMarquee } from "./InstagramMarquee";
 import type { OurStoryArticleMeta, OurStoryCategory } from "./articles/registry";
 
 type SortOption = "newest" | "oldest";
@@ -91,7 +93,20 @@ export function OurStoryLearnHub({
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[280px_minmax(0,1fr)]">
         {/* Desktop sidebar */}
         <aside className="hidden lg:block">
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-xl">
+          <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl">
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src="/explore-hero-v2.png"
+                alt="Explore"
+                fill
+                className="object-cover"
+                sizes="280px"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/35" />
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-xl">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-white/90">
                 Search by Category
@@ -177,6 +192,22 @@ export function OurStoryLearnHub({
             </div>
           </div>
 
+          {/* Mobile hub image */}
+          <div className="mt-4 lg:hidden">
+            <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl">
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src="/explore-hero-v2.png"
+                  alt="Explore"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 640px) 560px, 100vw"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/35" />
+              </div>
+            </div>
+          </div>
+
           {/* Mobile category chips */}
           <div className="mt-4 lg:hidden">
             <div className="flex items-center justify-between">
@@ -215,6 +246,8 @@ export function OurStoryLearnHub({
             </div>
           </div>
 
+          <InstagramMarquee />
+
           {/* Results */}
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {visible.map((article) => (
@@ -223,6 +256,21 @@ export function OurStoryLearnHub({
                 href={`/our-story/${article.slug}`}
                 className="group rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/10"
               >
+                {article.imageSrc && (
+                  <div className="relative mb-4 aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/10">
+                    <Image
+                      src={article.imageSrc}
+                      alt={article.imageAlt || article.title}
+                      fill
+                      className={[
+                        "object-cover",
+                        article.imageClassName ?? "",
+                      ].join(" ")}
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/35" />
+                  </div>
+                )}
                 <div className="flex items-center justify-between gap-3">
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
                     {article.category}

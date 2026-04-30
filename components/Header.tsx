@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -166,7 +167,7 @@ export default function Header() {
                             All Explore
                           </div>
                           <div className="mt-1 text-sm leading-relaxed text-white/70">
-                            Search, filter, and explore Enamr stories.
+                            Learn the science and culture of oral health.
                           </div>
                           <div className="mt-4 text-sm font-semibold text-white/85 transition group-hover/item:text-white">
                             Open hub →
@@ -177,6 +178,16 @@ export default function Header() {
                           href="/our-story/every-mouth-has-a-story"
                           className="relative group/item rounded-2xl border border-white/15 bg-white/12 p-4 transition hover:border-white/30 hover:bg-white/16"
                         >
+                          <div className="relative mb-3 aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/10">
+                            <Image
+                              src="/explore-post-march-12.png"
+                              alt="Every Mouth Has a Story"
+                              fill
+                              className="object-cover grayscale"
+                              sizes="360px"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/40" />
+                          </div>
                           <div className="flex items-center justify-between gap-4">
                             <div className="inline-flex rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/75">
                               Featured
@@ -282,6 +293,16 @@ export default function Header() {
                           href="/shop"
                           className="relative group/item rounded-2xl border border-white/15 bg-white/12 p-4 transition hover:border-white/30 hover:bg-white/16"
                         >
+                          <div className="relative mb-3 aspect-[16/10] w-full overflow-hidden rounded-xl border border-white/10">
+                            <Image
+                              src="/shop-hero.png"
+                              alt="Enamr Shop"
+                              fill
+                              className="object-cover"
+                              sizes="360px"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/0 to-black/40" />
+                          </div>
                           <div className="flex items-center justify-between gap-4">
                             <div className="inline-flex rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/75">
                               Coming soon

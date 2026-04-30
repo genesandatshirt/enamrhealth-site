@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { OUR_STORY_ARTICLE_INDEX } from "@/components/our-story/articles/registry";
@@ -5,7 +6,7 @@ import { OurStoryLearnHub } from "@/components/our-story/OurStoryLearnHub";
 
 export const metadata = {
   title: "Every Mouth Has a Story | Enamr Health",
-  description: "Explore stories and learnings from Enamr Health.",
+  description: "Learn the science and culture of oral health with Enamr Health.",
 };
 
 export default function OurStoryPage() {
@@ -42,13 +43,29 @@ export default function OurStoryPage() {
 
         {/* Learn hub header */}
         <div className="mx-auto max-w-6xl px-4 pb-6 pt-10 sm:px-6 sm:pb-10 sm:pt-14">
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-            Every Mouth Has a Story
-          </h1>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
+            <div>
+              <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+                Every Mouth Has a Story
+              </h1>
 
-          <p className="mt-4 text-lg italic text-white/80">
-            Why we started Enamr Health
-          </p>
+              <p className="mt-4 text-lg italic text-white/80">
+                Learn the science and culture of oral health.
+              </p>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl">
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src="/explore-hero-v2.png"
+                  alt="Explore"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <OurStoryLearnHub articles={OUR_STORY_ARTICLE_INDEX} />

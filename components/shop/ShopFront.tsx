@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { ShopCategory, ShopIndication, ShopProduct } from "./products/registry";
 
@@ -242,9 +243,19 @@ export function ShopFront({ products }: { products: ShopProduct[] }) {
                   </div>
                 </div>
 
-                <div className="mt-4 aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_55%)]">
-                  <div className="flex h-full w-full items-center justify-center text-xs font-semibold uppercase tracking-[0.2em] text-white/55">
-                    Coming soon
+                <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/10">
+                  <Image
+                    src="/shop-hero.png"
+                    alt="Enamr Shop"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 280px, (min-width: 640px) 40vw, 90vw"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/55" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="rounded-full border border-white/20 bg-black/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 backdrop-blur">
+                      Coming soon
+                    </div>
                   </div>
                 </div>
 

@@ -48,7 +48,7 @@ export default function ShopPage() {
             <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl">
               <div className="relative aspect-[16/10] w-full">
                 <Image
-                  src="/shop-hero.svg"
+                  src="/shop-hero.png"
                   alt="Enamr shop preview"
                   fill
                   className="object-cover"
